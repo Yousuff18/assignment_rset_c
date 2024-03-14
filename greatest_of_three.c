@@ -1,23 +1,28 @@
-/*Read 3 integer values and find the largest among them.*/
-#include <stdio.h>
+/*Write a program to find largest of three numbers?*/
+#include<stdio.h>
 
-int main() {
-    int num1, num2, num3;
-    
+int main()
+{
+int a, b, c;
+printf("enter first number to be compared:");
+scanf("%d", &a);
+printf("enter second number to be compared:");
+scanf("%d", &b);
+printf("enter third number to be compared:");
+scanf("%d", &c);
 
-    printf("Enter three integers: ");
-    scanf("%d %d %d", &num1, &num2, &num3);
-    
+if (a>b & a>c)
+{
+printf("%d is greatest", a);
+}
 
-    int largest = num1;
-    if (num2 > largest) {
-        largest = num2;
-    }
-    if (num3 > largest) {
-        largest = num3;
-    }
+else if (b>a & b>c)
+{
+printf("%d is greatest", b);
+}
 
-    printf("The largest integer is: %d\n", largest);
-    
-    return 0;
+else if (c>a & c>b)
+{
+printf("%d is greatest", c);
+}
 }
