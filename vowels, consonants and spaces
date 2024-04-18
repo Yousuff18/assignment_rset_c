@@ -2,28 +2,28 @@
 #include <ctype.h>
 
 int main() {
-    char str[100];
-    int vowels = 0, consonants = 0, spaces = 0, i;
+    char s[100];
+    int v = 0, c = 0, sp = 0, i;
 
     printf("Enter a string: ");
-    fgets(str, sizeof(str), stdin);
+    fgets(s, sizeof(s), stdin);
 
-    for (i = 0; str[i] != '\0'; i++) {
-        if (isalpha(str[i])) {
-            char ch = tolower(str[i]);
+    for (i = 0; s[i] != '\0'; i++) {
+        if (isalpha(s[i])) {
+            char ch = tolower(s[i]);
             if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
-                vowels++;
+                v++;
             } else {
-                consonants++;
+                c++;
             }
-        } else if (isspace(str[i])) {
-            spaces++;
+        } else if (isspace(s[i])) {
+            sp++;
         }
     }
 
-    printf("Number of vowels: %d\n", vowels);
-    printf("Number of consonants: %d\n", consonants);
-    printf("Number of spaces: %d\n", spaces);
+    printf("Number of vowels: %d\n", v);
+    printf("Number of consonants: %d\n", c);
+    printf("Number of spaces: %d\n", sp);
 
     return 0;
 }
