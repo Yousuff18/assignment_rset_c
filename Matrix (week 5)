@@ -10,7 +10,7 @@ int main() {
 
     do {
         printf("\nMenu:\n");
-        printf("1. Read and display matrix 1\n");
+        printf("1. Read and display matrix\n");
         printf("2. Find the sum of two matrices and print it\n");
         printf("3. Display the transpose of a matrix\n");
         printf("4. Exit\n");
@@ -20,6 +20,27 @@ int main() {
         switch (choice) {
             case 1:
                 if (!matrix1Entered) {
+                    printf("\nEnter matrix:\n");
+                    for (i = 0; i < rows; i++) {
+                        for (j = 0; j < cols; j++) {
+                            printf("Enter element at position (%d, %d): ", i + 1, j + 1);
+                            scanf("%d", &matrix1[i][j]);
+                        }
+                    }
+                    printf("\nMatrix:\n");
+                    for (i = 0; i < rows; i++) {
+                        for (j = 0; j < cols; j++) {
+                            printf("%d\t", matrix1[i][j]);
+                        }
+                        printf("\n");
+                    }
+                    matrix1Entered = 1;
+                } else {
+                    printf("Matrix is already entered.\n");
+                }
+                break;
+            case 2:
+                if (matrix1Entered) {
                     printf("\nEnter matrix 1:\n");
                     for (i = 0; i < rows; i++) {
                         for (j = 0; j < cols; j++) {
@@ -34,15 +55,8 @@ int main() {
                         }
                         printf("\n");
                     }
-                    matrix1Entered = 1;
-                } else {
-                    printf("Matrix 1 is already entered.\n");
-                }
-                break;
-            case 2:
-                if (matrix1Entered) {
-                    printf("\nSum of matrices:\n");
-                    printf("Please enter matrix 2:\n");
+
+                    printf("\nEnter matrix 2:\n");
                     for (i = 0; i < rows; i++) {
                         for (j = 0; j < cols; j++) {
                             printf("Enter element at position (%d, %d): ", i + 1, j + 1);
@@ -65,15 +79,15 @@ int main() {
                         printf("\n");
                     }
                 } else {
-                    printf("Please enter matrix 1 first.\n");
+                    printf("Please enter matrix first.\n");
                 }
                 break;
             case 3:
                 if (matrix1Entered) {
-                    printf("\nEnter the matrix to find its transpose (1 for matrix1, 2 for matrix2): ");
+                    printf("\nEnter the matrix to find its transpose (1 for matrix): ");
                     scanf("%d", &choice);
                     if (choice == 1) {
-                        printf("\nTranspose of matrix 1:\n");
+                        printf("\nTranspose of matrix:\n");
                         for (j = 0; j < cols; j++) {
                             for (i = 0; i < rows; i++) {
                                 printf("%d\t", matrix1[i][j]);
@@ -84,7 +98,7 @@ int main() {
                         printf("Invalid choice\n");
                     }
                 } else {
-                    printf("Please enter matrix 1 first.\n");
+                    printf("Please enter matrix first.\n");
                 }
                 break;
             case 4:
