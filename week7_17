@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+#define C_SIZE 50
+
+union Address {
+    char name[C_SIZE];
+    char houseName[C_SIZE];
+    char cityName[C_SIZE];
+    char state[C_SIZE];
+    char pinCode[C_SIZE];
+};
+
+int main() {
+    union Address personAddress;
+
+    printf("Enter name: ");
+    scanf("%s", personAddress.name);
+
+    printf("Enter house name: ");
+    scanf("%s", personAddress.houseName);
+
+    printf("Enter city name: ");
+    scanf("%s", personAddress.cityName);
+
+    printf("Enter state: ");
+    scanf("%s", personAddress.state);
+
+    printf("Enter pin code: ");
+    scanf("%s", personAddress.pinCode);
+
+    printf("\nAddress of the person:\n");
+    printf("Name: %s\n", personAddress.name);
+    printf("House Name: %s\n", personAddress.houseName);
+    printf("City Name: %s\n", personAddress.cityName);
+    printf("State: %s\n", personAddress.state);
+    printf("Pin Code: %s\n", personAddress.pinCode);
+
+    return 0;
+}
