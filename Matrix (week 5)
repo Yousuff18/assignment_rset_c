@@ -1,93 +1,71 @@
 #include <stdio.h>
 
-void readMatrix(int rows, int cols, int matrix[10][10]) {
-    printf("Enter the elements of the matrix:\n");
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            printf("Enter element at position (%d, %d): ", i + 1, j + 1);
+#define MAX_ROWS 10
+#define MAX_COLS 10
+
+void read_matrix(int matrix[MAX_ROWS][MAX_COLS], int *rows, int *cols) {
+    printf("Enter the number of rows: ");
+    scanf("%d", rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", cols);
+    printf("Enter the elements row-wise:\n");
+    for (int i = 0; i < *rows; i++)
+        for (int j = 0; j < *cols; j++)
             scanf("%d", &matrix[i][j]);
-        }
-    }
 }
 
-void displayMatrix(int rows, int cols, int matrix[10][10]) {
-    printf("Matrix:\n");
+void display_matrix(int matrix[MAX_ROWS][MAX_COLS], int rows, int cols) {
     for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            printf("%d\t", matrix[i][j]);
-        }
+        for (int j = 0; j < cols; j++)
+            printf("%d ", matrix[i][j]);
         printf("\n");
     }
 }
 
-void matrixAddition(int rows, int cols, int matrix1[10][10], int matrix2[10][10], int result[10][10]) {
-    printf("Sum of matrices:\n");
+void matrix_sum(int matrix1[MAX_ROWS][MAX_COLS], int matrix2[MAX_ROWS][MAX_COLS], int rows, int cols) {
     for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            result[i][j] = matrix1[i][j] + matrix2[i][j];
-            printf("%d\t", result[i][j]);
-        }
+        for (int j = 0; j < cols; j++)
+            printf("%d ", matrix1[i][j] + matrix2[i][j]);
         printf("\n");
     }
 }
 
-void transposeMatrix(int rows, int cols, int matrix[10][10]) {
-    printf("Transpose of matrix:\n");
+void transpose_matrix(int matrix[MAX_ROWS][MAX_COLS], int rows, int cols) {
     for (int j = 0; j < cols; j++) {
-        for (int i = 0; i < rows; i++) {
-            printf("%d\t", matrix[i][j]);
-        }
+        for (int i = 0; i < rows; i++)
+            printf("%d ", matrix[i][j]);
         printf("\n");
     }
 }
 
 int main() {
     int choice, rows, cols;
-    int matrix1[10][10], matrix2[10][10], result[10][10];
-
-    printf("Enter the number of rows and columns of the matrices: ");
-    scanf("%d %d", &rows, &cols);
-
-    do {
-        printf("\nMenu:\n");
-        printf("1. Read and display a matrix\n");
-        printf("2. Find the sum of two matrices and print it\n");
-        printf("3. Display the transpose of a matrix\n");
-        printf("4. Exit\n");
-        printf("Enter your choice: ");
+    int matrix1[MAX_ROWS][MAX_COLS], matrix2[MAX_ROWS][MAX_COLS];
+    
+    while (1) {
+        printf("\nMatrix Operations Menu:\n1. Read and display a matrix\n2. Find the sum of two matrices and print it\n3. Display the transpose of a matrix\n4. Exit\nEnter your choice (1/2/3/4): ");
         scanf("%d", &choice);
-
-        switch (choice) {
+        
+        switch(choice) {
             case 1:
-                printf("\nEnter matrix 1:\n");
-                readMatrix(rows, cols, matrix1);
-                displayMatrix(rows, cols, matrix1);
+                read_matrix(matrix1, &rows, &cols);
+                display_matrix(matrix1, rows, cols);
                 break;
             case 2:
-                printf("\nEnter matrix 1:\n");
-                readMatrix(rows, cols, matrix1);
-                printf("\nEnter matrix 2:\n");
-                readMatrix(rows, cols, matrix2);
-                matrixAddition(rows, cols, matrix1, matrix2, result);
+                read_matrix(matrix1, &rows, &cols);
+                read_matrix(matrix2, &rows, &cols);
+                matrix_sum(matrix1, matrix2, rows, cols);
                 break;
             case 3:
-                printf("\nEnter the matrix to find its transpose (1 for matrix 1, 2 for matrix 2): ");
-                scanf("%d", &choice);
-                if (choice == 1) {
-                    transposeMatrix(rows, cols, matrix1);
-                } else if (choice == 2) {
-                    transposeMatrix(rows, cols, matrix2);
-                } else {
-                    printf("Invalid choice\n");
-                }
+                read_matrix(matrix1, &rows, &cols);
+                transpose_matrix(matrix1, rows, cols);
                 break;
             case 4:
-                printf("\nExiting...\n");
+                printf("Exiting program...\n");
                 return 0;
             default:
-                printf("Invalid choice\n");
+                printf("Invalid choice. Please enter a valid option.\n");
         }
-    } while (1);
-
+    }
     return 0;
 }
